@@ -42,10 +42,10 @@ TU09,,Sing in link,Leads to the specified page,,"1. Go to https://qa-course-01.a
 TU10,Authorization form,,Sing in with valid data,User is already registered,"1. Go to https://qa-course-01.andersenlab.com/login page;
  3. Enter valid email 
  4. Enter valid password
- 5. Click submit button","First Name - Name;
+ 5. Click Sign in button","Email - test@example.com;
  Password - Qwerty123",Leads to the Account page,,
 TU11,,,Sing in with empty fields,,"1. Go to https://qa-course-01.andersenlab.com/login page;
- 2. Click submit button",,"The following error message is displayed below all fields:
+ 2. Click Sign in button",,"The following error message is displayed below all fields:
  Required",,
 TU12,,Email field,Email format: no @,,"1. Go to https://qa-course-01.andersenlab.com/login page;
  2. Enter email without @ in the Email field",Email - www.ww,"The following error message is under the field:
