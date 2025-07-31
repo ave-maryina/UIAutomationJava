@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Grouping Suite" preserve-order="true">
+    <test name="First Group" preserve-order="true">
+        <groups>
+            <run>
+                <include name="first"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="grouping.Groups"/>
+        </classes>
+    </test>
+
+    <test name="Second Group" preserve-order="true">
+        <groups>
+            <run>
+                <include name="second"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="grouping.Groups"/>
+        </classes>
+    </test>
+</suite>
