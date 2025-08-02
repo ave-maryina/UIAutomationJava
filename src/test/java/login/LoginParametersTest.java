@@ -5,21 +5,31 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utils.driver.DriverSetUp;
 import utils.urls.Links;
 
 import java.time.Duration;
 
 public class LoginParametersTest {
+    static WebDriver driver;
+    static WebDriverWait wait;
+
+    @BeforeClass
+    public void varInit() {
+        driver = DriverSetUp.getDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    @AfterSuite
+    public void closeDriver() {
+        driver.quit();
+    }
 
     @Test
     @Parameters({"email", "password"})
     public void testParamLogin(String email, String password) {
-        WebDriver driver = DriverSetUp.getDriver();
         driver.get(Links.ANDERSEN_lAB_AUTHORIZATION_PAGE.getLink());
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email"))).sendKeys(email);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("password"))).sendKeys(password);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type=\"submit\"]")))

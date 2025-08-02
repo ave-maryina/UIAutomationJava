@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.driver.DriverSetUp;
@@ -13,6 +15,19 @@ import utils.urls.Links;
 import java.time.Duration;
 
 public class LoginTestDataProvider {
+    static WebDriver driver;
+    static WebDriverWait wait;
+
+    @BeforeClass
+    public void varInit() {
+        driver = DriverSetUp.getDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    @AfterClass
+    public void closeDriver() {
+        driver.quit();
+    }
 
     @DataProvider(name = "users")
     public Object[][] getUsers() {
@@ -23,11 +38,9 @@ public class LoginTestDataProvider {
         };
     }
 
-    @Test (dataProvider = "users")
+    @Test(dataProvider = "users")
     public void testLogin(String email, String password) throws InterruptedException {
-        WebDriver driver = DriverSetUp.getDriver();
         driver.get(Links.ANDERSEN_lAB_AUTHORIZATION_PAGE.getLink());
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email"))).sendKeys(email);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("password"))).sendKeys(password);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type=\"submit\"]")))
