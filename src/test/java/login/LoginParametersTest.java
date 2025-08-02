@@ -6,8 +6,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import utils.driver.DriverSetUp;
-import utils.urls.Links;
+import org.automation.utils.driver.DriverSetUp;
+import org.automation.utils.urls.Links;
 
 import java.time.Duration;
 

@@ -1,4 +1,4 @@
-package utils.urls;
+package org.automation.utils.urls;
 
 public enum Links {
     ANDERSEN_lAB_REGISTRATION_PAGE("https://qa-course-01.andersenlab.com/registration"),
