@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Login Parameters Suite">
+
+    <test name="Andersen Login Test">
+        <parameter name="email" value="test@example.com"/>
+        <parameter name="password" value="Qwerty123"/>
+        <classes>
+            <class name="RegisteredUserLoginTest"/>
+        </classes>
+    </test>
+    <test name="Andersen Select Course">
+        <classes>
+            <class name="SelectCourseTest"/>
+        </classes>
+    </test>
+</suite>
