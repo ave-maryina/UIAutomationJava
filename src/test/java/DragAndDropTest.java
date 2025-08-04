@@ -1,4 +1,10 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -30,5 +36,7 @@ public class DragAndDropTest extends BaseTest {
                 .findElement(Locators.automationWorkLeft)).release().pause(Duration.ofSeconds(1)).build().perform();
         actions.moveToElement(driver.findElement(Locators.frameworkSetUp)).clickAndHold().moveToElement(driver
                 .findElement(Locators.automationWorkRight)).release().pause(Duration.ofSeconds(1)).build().perform();
+        Assert.assertTrue(driver.findElement(Locators.message).getText().equals("Congratulations! Let's test for the best!"), "Message not displayed!");
+
     }
 }

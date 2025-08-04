@@ -28,10 +28,14 @@ public class SelectCourseTest extends BaseTest {
         actions.sendKeys(driver.findElement(Locators.selectCountry), "USA").click().build().perform();
         actions.sendKeys(driver.findElement(Locators.selectLanguage), "English").click().build().perform();
         actions.sendKeys(driver.findElement(Locators.selectType), "Testing").click().build().perform();
-        actions.sendKeys(driver.findElement(Locators.startDate), DateGenerator.getNextMonday().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))).perform();
-        actions.sendKeys(driver.findElement(Locators.endDate), DateGenerator.twoWeeksAfterNextMonday().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))).perform();
+        actions.sendKeys(driver.findElement(Locators.startDate), DateGenerator.getNextMonday().format(DateTimeFormatter
+                .ofPattern("dd.MM.yyyy"))).perform();
+        actions.sendKeys(driver.findElement(Locators.endDate), DateGenerator.twoWeeksAfterNextMonday()
+                .format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))).perform();
         actions.clickAndHold(driver.findElement(Locators.aqaPython)).moveToElement(driver.findElement(Locators.aqaJava))
                 .release().click(driver.findElement(Locators.searchButton)).build().perform();
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.message)).isDisplayed(), "Message not displayed!");
+        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.message)).getText()
+                        .equals("Unfortunately, we did not find any courses matching your chosen criteria."),
+                "Message not displayed!");
     }
 }
