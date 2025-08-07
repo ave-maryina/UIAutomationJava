@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Login Parameters Suite">
+    <test name="Andersen Authorization Test">
+        <class name="AuthorizationPageTest"/>
+    </test>
+</suite>
