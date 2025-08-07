@@ -3,7 +3,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class AuthorizationPageTest extends BaseTest {
-    private static AuthorizationPage authPage;
 
     @Test
     public void walidDataAuthorization() {

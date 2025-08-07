@@ -2,7 +2,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class RegistrationModuleAT extends BaseTest {
-    private static RegistrationPage regisPage;
 
     @Test
     public void emptyFieldsRegistration() {

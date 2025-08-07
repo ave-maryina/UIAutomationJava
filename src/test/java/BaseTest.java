@@ -21,7 +21,6 @@ public class BaseTest {
         actions = new Actions(driver);
         authPage = new AuthorizationPage(driver);
         regisPage = new RegistrationPage(driver);
-        System.out.println(authPage.toString());
     }
 
     @AfterClass
