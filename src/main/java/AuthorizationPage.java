@@ -9,8 +9,8 @@ import utils.Links;
 import java.time.Duration;
 
 public class AuthorizationPage {
-    private static WebDriver driver;
-    private static WebDriverWait wait;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     @FindBy(name = "email")
     private WebElement emailField;

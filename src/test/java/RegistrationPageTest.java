@@ -1,31 +1,38 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class RegistrationModuleAT extends BaseTest {
-
+public class RegistrationPageTest extends BaseTest {
     @Test
     public void emptyFieldsRegistration() {
         regisPage
-                .registration("", "", "", "", "", "");
-        actions.pause(3000).perform();
+                .openRegistrationPage().enterFirstName("").enterLastName("").enterDateOfBirth("");
+        actions.click().perform();
+        regisPage
+                .enterEmail("").enterPassword("").enterConfPass("").clickSubmit();
+        actions.pause(3000).build().perform();
         Assert.assertTrue(regisPage.getErrorMessage().contains("Required"), "The error message does not match what was expected.");
     }
 
     @Test
     public void firstNameMinLengthRegistration() {
         regisPage
-                .registration("Na", "LastName", "03/19/1996", "testemail123@example.com", "12345qwert", "Method…");
-        actions.pause(3000).perform();
-        Assert.assertFalse(driver.getCurrentUrl().contains("/login"), "Failed registration.");
+                .openRegistrationPage().enterFirstName("Na").enterLastName("LastName").enterDateOfBirth("03/19/1996");
+        actions.click().perform();
+        regisPage
+                .enterEmail(RandomEmailGenerator.generateEmail()).enterPassword("12345qwert").enterConfPass("12345qwert").clickSubmit();
+        actions.pause(3000).build().perform();
+        Assert.assertFalse(driver.getCurrentUrl().contains("/registration"), "Failed registration.");
     }
 
     @Test
     public void firstNameOneCharRegisNegative() {
         regisPage
-                .openRegistrationPage()
-                .registration("S", "LastName", "03/19/1996", "test123email123@example.com", "12345qwert", "12345qwert");
+                .openRegistrationPage().enterFirstName("S").enterLastName("LastName").enterDateOfBirth("03/19/1996");
+        actions.click().perform();
+        regisPage
+                .enterEmail(RandomEmailGenerator.generateEmail()).enterPassword("12345qwert").enterConfPass("12345qwert").clickSubmit();
         actions.pause(3000).perform();
-        Assert.assertFalse(driver.getCurrentUrl().contains("/registration"), "Failed registration.");
+        Assert.assertTrue(authPage.getErrorMessage().equals("Minimum 2 characters"), "Failed registration.");
     }
 
     @Test
@@ -33,7 +40,7 @@ public class RegistrationModuleAT extends BaseTest {
         regisPage
                 .openRegistrationPage()
                 .enterDateOfBirth("30/04/1990");
-        actions.pause(3000).perform();
+        actions.click().pause(3000).build().perform();
         Assert.assertTrue(authPage.getErrorMessage().equals("Not valid date format"), "The error message does not match what was expected.");
     }
 
@@ -52,12 +59,12 @@ public class RegistrationModuleAT extends BaseTest {
         regisPage.openRegistrationPage()
                 .enterPassword("12345678")
                 .enterConfPass("123456789");
-        actions.pause(3000).perform();
+        actions.click().pause(3000).build().perform();
         Assert.assertTrue(authPage.getErrorMessage().equals("Passwords must match"), "The error message does not match what was expected.");
     }
 
     @Test
-    public void SingInLinkLeadsToSpecifiedPage() {
+    public void singInLinkLeadsToSpecifiedPage() {
         regisPage
                 .openRegistrationPage()
                 .clickSignIn();

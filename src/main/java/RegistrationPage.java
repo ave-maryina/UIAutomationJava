@@ -9,8 +9,8 @@ import utils.Links;
 import java.time.Duration;
 
 public class RegistrationPage {
-    private static WebDriver driver;
-    private static WebDriverWait wait;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     public RegistrationPage(WebDriver driver) {
         this.driver = driver;
@@ -95,6 +95,7 @@ public class RegistrationPage {
     }
 
     public void registration(String firstName, String lastName, String dateOfBirth, String email, String password, String confirmPass) {
-        enterEmail(email).enterPassword(password).clickSubmit();
+        enterFirstName(firstName).enterLastName(lastName).enterDateOfBirth(dateOfBirth)
+                .enterEmail(email).enterPassword(password).enterConfPass(confirmPass).clickSubmit();
     }
 }
