@@ -1,3 +1,5 @@
+package utils.randomEmailGenerator;
+
 import java.security.SecureRandom;
 
 public class RandomEmailGenerator {
