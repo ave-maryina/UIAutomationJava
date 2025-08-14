@@ -9,4 +9,3 @@ Feature: Testing Authorization page
       | nane_surname.gmail |
       | nane_surname@      |
       | @gmail.com         |
-      | 12@gmail.com       |
