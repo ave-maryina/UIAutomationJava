@@ -1,6 +1,5 @@
 package selenideStepDefinition;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.After;
@@ -49,7 +48,6 @@ public class RegistrationPageStepDefinitions {
         if (scenario.isFailed()) {
         byte[] screenshot = ((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);
         scenario.attach(screenshot, "image/png", scenario.getName() + "_Failed");
-
         }
         closeWebDriver();
     }
@@ -112,11 +110,6 @@ public class RegistrationPageStepDefinitions {
     @Then("Check Current url doesn't contain {}")
     public void check_current_url_does_not_contain(String path) {
         Assert.assertFalse(url().contains(path));
-    }
-
-    @Then("Quit driver")
-    public void quit_driver() {
-        //closeWebDriver();
     }
 }
 

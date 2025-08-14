@@ -14,7 +14,6 @@ Feature: Testing Registration page
     And Set Confirm password 12345678
     And Click Submit button
     Then Check Current url doesn't contain /login
-    Then Quit driver
     Examples:
       | firstName |
       | Na        |
@@ -25,7 +24,6 @@ Feature: Testing Registration page
     And Set Password <password>
     And Set Confirm password <confirm password>
     Then Check that error message is Passwords must match
-    Then Quit driver
     Examples:
       | password | confirm password |
       | 12345678 | 12345679         |
