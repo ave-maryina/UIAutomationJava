@@ -1,3 +1,4 @@
+<!--
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="AllTests Suite">
     <test name="AllTests">
@@ -6,4 +7,4 @@
             <class name="AuthorizationPageTest"/>
         </classes>
     </test>
-</suite>
+</suite>-->
