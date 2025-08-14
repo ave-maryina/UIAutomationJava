@@ -1,8 +1,5 @@
 Feature: Testing Authorization page
 
-  Background:
-    Given Set up driver
-
   Scenario Outline: Testing invalid email data
     When Opening Authorization page
     And Set invalid Email <email>
@@ -13,6 +10,3 @@ Feature: Testing Authorization page
       | nane_surname@      |
       | @gmail.com         |
       | 12@gmail.com       |
-
-
-

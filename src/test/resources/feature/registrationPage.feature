@@ -1,8 +1,5 @@
 Feature: Testing Registration page
 
-  Background:
-    Given Set up driver
-
   Scenario Outline: Testing of positive filling Registration page where First name consists of the minimum allowed length(2 characters)
     When Opening Registration page
     And Set First name  <firstName>

@@ -1,23 +1,15 @@
 package selenideStepDefinition;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
-import io.cucumber.java.After;
-import io.cucumber.java.Scenario;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
 import utils.urls.Links;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.driver;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static utils.randomEmailGenerator.RandomEmailGenerator.generateEmail;
 
@@ -34,23 +26,6 @@ public class RegistrationPageStepDefinitions {
     private static final SelenideElement getDateOfBirthLabel = $(By.xpath("//label[contains(., 'First Name')]"));
 
     protected Logger logger = LogManager.getLogger(this.getClass());
-
-    @Given("Set up driver")
-    public void set_up_driver() {
-        WebDriverManager.chromedriver().setup();
-        Configuration.browser = "chrome";
-        Configuration.headless = false;
-        Configuration.browserSize = "1920x1080";
-    }
-
-    @After
-    public void tearDown(Scenario scenario) {
-        if (scenario.isFailed()) {
-        byte[] screenshot = ((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);
-        scenario.attach(screenshot, "image/png", scenario.getName() + "_Failed");
-        }
-        closeWebDriver();
-    }
 
     @When("Opening Registration page")
     public void opening_registration_page() {
