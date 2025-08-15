@@ -86,7 +86,7 @@ public class RegistrationPageStepDefinitions {
         submitButton.click();
     }
 
-    @Then("Check  title contains {}")
+    @Then("Check that title contains {}")
     public void check_tittle_contains(String path) {
         tittle.shouldHave(text(path));
     }
