@@ -88,9 +88,6 @@ public class RegistrationPageStepDefinitions {
     @Then("Check Current url doesn't contain {}")
     public void check_current_url_does_not_contain(String path) {
         Assert.assertFalse(url().contains(path));
-        tittle.shouldBe();
-
-
     }
 }
 
