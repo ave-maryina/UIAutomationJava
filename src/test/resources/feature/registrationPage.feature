@@ -10,7 +10,7 @@ Feature: Testing Registration page
     And Set Password 12345678
     And Set Confirm password 12345678
     And Click Submit button
-    Then Check Current url doesn't contain /login
+    Then Check  title contains Sign In
     Examples:
       | firstName |
       | Na        |

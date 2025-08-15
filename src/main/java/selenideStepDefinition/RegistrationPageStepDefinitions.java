@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import utils.urls.Links;
 
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static utils.randomEmailGenerator.RandomEmailGenerator.generateEmail;
@@ -26,7 +27,7 @@ public class RegistrationPageStepDefinitions {
     private static final SelenideElement errorMessage = $(By.xpath("//span[@class = 'absolute right-0 text-rose-500 text-sm']"));
     private static final SelenideElement singInLink = $(By.xpath("//*[text() = 'Sing in']"));
     private static final SelenideElement getDateOfBirthLabel = $(By.xpath("//label[contains(., 'First Name')]"));
-    private static final SelenideElement tittle = $(By.xpath("//h1"));
+    private static final SelenideElement tittle = $(By.cssSelector("h1"));
 
     protected Logger logger = LogManager.getLogger(this.getClass());
 
@@ -85,9 +86,9 @@ public class RegistrationPageStepDefinitions {
         submitButton.click();
     }
 
-    @Then("Check Current url doesn't contain {}")
-    public void check_current_url_does_not_contain(String path) {
-        Assert.assertFalse(url().contains(path));
+    @Then("Check  title contains {}")
+    public void check_tittle_contains(String path) {
+        tittle.shouldHave(text(path));
     }
 }
 
