@@ -1,8 +1,8 @@
 Feature: Testing Registration page
 
   Scenario Outline: Testing of positive filling Registration page where First name consists of the minimum allowed length(2 characters)
-    When Opening Registration page
-    And Set First name  <firstName>
+    Given Opening Registration page
+    When Set First name  <firstName>
     And Set Last name  lastName
     And Set Date of birth  09/12/2000
     And Close pop up calendar
@@ -17,7 +17,7 @@ Feature: Testing Registration page
 
 
   Scenario Outline: Testing that an error message is displayed if the 'Password' and 'Confirm password' fields do not match
-    When Opening Registration page
+    Given Opening Registration page
     And Set Password <password>
     And Set Confirm password <confirm password>
     Then Check that error message is Passwords must match

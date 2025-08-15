@@ -2,6 +2,8 @@ package selenideStepDefinition;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +24,7 @@ public class AuthorizationPageStepDefinitions {
     protected Logger logger = LogManager.getLogger(this.getClass());
 
 
-    @When("Opening Authorization page")
+    @Given("Opening Authorization page")
     public void opening_authorization_page() {
         open(Links.ANDERSEN_lAB_AUTHORIZATION_PAGE.getLink());
         logger.info("opened link is: {}", Links.ANDERSEN_lAB_AUTHORIZATION_PAGE.getLink());
@@ -35,7 +37,7 @@ public class AuthorizationPageStepDefinitions {
         logger.info("user's email is {}", email);
     }
 
-    @When("Check that error message is {}")
+    @Then("Check that error message is {}")
     public void check_error_message(String errorMess) {
             errorMessage.shouldBe(Condition.text(errorMess));
             logger.info("error message is: {}", errorMessage.text());
