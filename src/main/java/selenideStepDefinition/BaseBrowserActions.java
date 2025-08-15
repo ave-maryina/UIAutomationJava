@@ -1,18 +1,18 @@
 package selenideStepDefinition;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 
 import java.io.ByteArrayInputStream;
+import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
-import static com.codeborne.selenide.WebDriverRunner.driver;
 
 public class BaseBrowserActions {
     @Before
@@ -26,8 +26,8 @@ public class BaseBrowserActions {
     @After
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed()) {
-            byte[] screenshot = ((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);
-            Allure.addAttachment("Failed Screenshot", "png", new ByteArrayInputStream(screenshot), "png");
+            byte[] screenshot = Selenide.screenshot(OutputType.BYTES);
+            Allure.addAttachment(scenario.getName() + "_Failed", "image/png", new ByteArrayInputStream(Objects.requireNonNull(screenshot)), "png");
         }
         closeWebDriver();
     }
