@@ -6,10 +6,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,6 +22,7 @@ public class AndroidPage {
     private AppiumDriver driver;
     private WebDriverWait wait;
     protected Logger logger = LogManager.getLogger(this.getClass());
+    private PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
 
     public AndroidPage(AppiumDriver driver) {
         this.driver = driver;
@@ -34,7 +38,6 @@ public class AndroidPage {
         private static final By okButton = AppiumBy.id("android:id/button1");
         private static final By nextMonthButton = AppiumBy.id("android:id/next");
         private static final By nextButton = AppiumBy.id("io.appium.android.apis:id/next");
-        private static final By tapCounterNextButton = AppiumBy.id("android:id/next");
     }
 
     public void clickOnViews() {
@@ -72,14 +75,6 @@ public class AndroidPage {
         logger.info("I clicked on the Next month button");
     }
 
-    public void setDate() {
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.changeDateButton)).click();
-    }
-
-    public void setTimeBySpinner() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.changeDateButton)).click();
-    }
-
     public void clickNext() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.nextButton)).click();
         logger.info("I clicked on the next button");
@@ -112,6 +107,47 @@ public class AndroidPage {
             ));
         }
         return allButtonsNames;
+    }
+
+    public void clickOnTomorrowDate(String tomorrowDate) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated
+                (AppiumBy.xpath("//android.view.View[@content-desc=\"" + tomorrowDate + "\"]"))).click();
+        logger.info("I clicked on the tomorrow date");
+    }
+
+    public void chooseElevenHours() throws InterruptedException {
+        Sequence tap = new Sequence(finger, 0)
+                .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), 327, 1028))
+                .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        for (int i = 0; i < 3; i++) {
+            Thread.sleep(100);
+            driver.perform(Collections.singletonList(tap));
+        }
+        logger.info("I clicked 3 times on the top of hours value");
+    }
+
+    public void chooseElevenMinutes() {
+        Sequence tap = new Sequence(finger, 0)
+                .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), 540, 1340))
+                .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        for (int i = 0; i < 9; i++) {
+            driver.perform(Collections.singletonList(tap));
+        }
+        logger.info("I clicked 9 times in the lower value of minutes");
+    }
+
+    public void choosePm() {
+        Sequence tap = new Sequence(finger, 0)
+                .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), 738, 1340))
+                .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        driver.perform(Collections.singletonList(tap));
+        logger.info("I clicked on Pm");
     }
 
     public void scrollUntilTextSwitcherClick() {
